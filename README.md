@@ -1,2 +1,4 @@
 # annoy-uzair
-Sends Uzair monthly emails about my Chess.com progress to annoy him
+Uses Chess.com API to get my statistics and email Uzair about my chess progress each month
+
+*(All in good humor. Uzair does not mind)*
