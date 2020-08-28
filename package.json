@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/notadilnaqvi/annoy-uzair#readme",
   "dependencies": {
+    "cron": "^1.8.2",
     "dotenv": "^8.2.0",
-    "mongodb": "^3.6.0"
+    "mongodb": "^3.6.0",
+    "node-fetch": "^2.6.0",
+    "nodemailer": "^6.4.11"
   }
 }
