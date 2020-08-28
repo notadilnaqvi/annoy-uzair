@@ -1,10 +1,12 @@
+require("dotenv").config();
 const fetch = require('node-fetch');
+const MongoClient = require('mongodb').MongoClient;
 
 // GET DATA FROM CHESS.COM API, PARSE IT, RETURN DICT
 async function getData() {
     // GET MONTH & YEAR
     let date = new Date();
-    let month = (_ = (date.getMonth() + 1).toString()).length == 1 ? "0" + _ : _; // MAKE SURE MONTH IS 2 DIGITS (05 NOT 5 FOR MAY)
+    let month = (_ = (date.getMonth() + 0).toString()).length == 1 ? "0" + _ : _; // MAKE SURE MONTH IS 2 DIGITS (05 NOT 5 FOR MAY)
     let year = date.getFullYear().toString();
     const chessUsername = "notadilnaqvi";
 
@@ -49,14 +51,38 @@ function getDataFromStatsJson(_json) {
 
 // MAIN
 async function annoyUzair(){
-    data = await getData()
-    console.log(data);
+    data = await getData();
+    await uploadToDatabase(data);
+    console.log("DONE!");
     // send email
     // upload data
     // update website
 }
 
 annoyUzair()
+
+async function uploadToDatabase(_dict){
+    URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster.olekz.gcp.mongodb.net/stats?retryWrites=true&w=majority`;
+
+    const client = new MongoClient(URI, {useUnifiedTopology: true});
+    await client.connect();
+    const database = client.db("stats");
+    const collection = database.collection("myChessStats");
+    let result = await collection.insertOne({
+        "month": _dict["month"],
+        "played": _dict["played"],
+        "won": _dict["won"],
+        "rating": _dict["rating"]
+    })
+    console.log(result.insertedId);
+    // let cursor = collection.find({});
+
+    // while (await cursor.hasNext()) {
+    //     let temp = await cursor.next();
+    //     console.log(temp);
+    // }
+    client.close()  
+}
 
 // JOB EVERY MONTH
 // var CronJob = require('cron').CronJob;
