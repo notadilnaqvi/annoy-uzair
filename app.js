@@ -18,11 +18,13 @@ const client = new MongoClient(URI, {
     //     "rating": 1253
     // })
     // console.log(result.insertedId);
-    let cursor =   collection.find({});
-    
-    while(await cursor.hasNext()){
+    let cursor = collection.find({});
+
+    while (await cursor.hasNext()) {
         let temp = await cursor.next();
         console.log(temp);
     }
     client.close()
 })();
+
+// 
