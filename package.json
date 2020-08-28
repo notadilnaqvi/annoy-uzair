@@ -1,0 +1,23 @@
+{
+  "name": "annoy-uzair",
+  "version": "1.0.0",
+  "description": "Uses Chess.com API to get my statistics and email Uzair about my chess progress each month",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notadilnaqvi/annoy-uzair.git"
+  },
+  "author": "Adil Naqvi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/notadilnaqvi/annoy-uzair/issues"
+  },
+  "homepage": "https://github.com/notadilnaqvi/annoy-uzair#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mongodb": "^3.6.0"
+  }
+}
